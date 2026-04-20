@@ -1,6 +1,8 @@
 import express from 'express';
 import path,{dirname} from 'path'
 import {fileURLToPath} from 'url'
+import autoRoutes from './routes/authRoutes.js'
+import todoRoutes from './routes/todoRoutes.js'
 const app=express()
 const PORT=process.env.PORT||5005
 const __filename=fileURLToPath(import.meta.url)
@@ -12,7 +14,8 @@ app.use(express.static(path.join(__dirname,'../public')))
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'public','index.html'))
 })
-console.log('hello world')
+app.use('/auth',authRoutes)
+app.use('/todos',todoRoutes)
 
 app.listen(PORT,()=>{
     console.log(`SERVER HAS STARTED ON:${PORT}`)
