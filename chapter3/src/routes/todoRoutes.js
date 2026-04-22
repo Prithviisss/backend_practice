@@ -7,6 +7,6 @@ router.get('/' ,(req,res)=>{ })
 
 router.put('/:id',(req,res)=>{})
 
-router.delete('/:id',{req,res}=>{ })
+router.delete('/:id',(req,res)=>{ })
 
 export default router

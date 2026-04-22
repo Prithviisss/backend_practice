@@ -1,4 +1,4 @@
-import {DatabasesSync} from 'node:sqlite';
+import {DatabaseSync} from 'node:sqlite';
 const db=new DatabaseSync(':memory:');
 
 db.exec(`
@@ -7,9 +7,9 @@ db.exec(`
     username TEXT UNIQUE,
     password TEXT
 )
-    `)
+    `);
 
-    db.EXEC(`
+    db.exec(`
         CREATE TABLE todo(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER,
