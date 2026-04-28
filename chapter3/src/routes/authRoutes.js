@@ -19,6 +19,9 @@ router.post('/register',(req,res)=>{
         const defaultTodo=`hello :) add your first todo!`
         const insertTodo=db.prepare(`INSERT INTO todos(user_id,task) VALUES(?,?)`)
         insertTodo.run(result.lastInsertRowid,defaultTodo)
+        //create a token
+        const token =JsonWebTokenError.sign({id:result.lastInsertRowid},process.env.JWT_SECRET,{expiresIn:'24h'})
+        res.json({token})
 
 
     } catch(err){
