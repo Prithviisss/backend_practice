@@ -6,8 +6,8 @@ POST http://localhost:5005/auth/register
 Content-Type: application/json
 
 {
-    "username": "myuser",
-    "password": "mypassword"
+    "username": "aryanutkarsh65@gmail.com",
+    "password": "123123"
 }
 
 ###
@@ -16,6 +16,41 @@ POST http://localhost:5005/auth/login
 Content-Type: application/json
 
 {
-    "username": "myuser",
-    "password": "mypassword"
+    "username": "reemadasssss@gmail.com",
+    "password": "123123"
+}
+
+###
+
+GET http://localhost:5005/todos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc3NzM3MDAyLCJleHAiOjE3Nzc4MjM0MDJ9._uyTOnQ8womQiLPvIsou-epjs7qhfw6W6wJPa6r8MF4
+###
+
+POST http://localhost:5005/todos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc3NzM3MDAyLCJleHAiOjE3Nzc4MjM0MDJ9._uyTOnQ8womQiLPvIsou-epjs7qhfw6W6wJPa6r8MF4
+Content-Type: application/json
+
+{
+    "task":"make a chai"
+}
+
+###
+PUT http://localhost:5005/todos/5?page=4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc3NzM3MDAyLCJleHAiOjE3Nzc4MjM0MDJ9._uyTOnQ8womQiLPvIsou-epjs7qhfw6W6wJPa6r8MF4 
+Content-Type: application/json
+
+{
+    "completed":1
+   
+}
+
+
+###
+DELETE http://localhost:5005/todos/5
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc3NzM3MDAyLCJleHAiOjE3Nzc4MjM0MDJ9._uyTOnQ8womQiLPvIsou-epjs7qhfw6W6wJPa6r8MF4 
+Content-Type: application/json
+
+{
+    "completed":1
+   
 }

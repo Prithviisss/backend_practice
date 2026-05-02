@@ -1,6 +1,6 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
-import jvt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import db from '../db.js'
 
 const router =express.Router()
@@ -13,20 +13,20 @@ router.post('/register',(req,res)=>{
     const hashedPassword=bcrypt.hashSync(password,8)
 
     try{
-        const insertUser=db.prepare(`INSERT INTO users(username,password) VALUES(?,?)`)
+        const insertUser=db.prepare(`INSERT INTO user(username,password) VALUES(?,?)`)
         const result=insertUser.run(username,hashedPassword)
         //THIER FIRST TODO
         const defaultTodo=`hello :) add your first todo!`
-        const insertTodo=db.prepare(`INSERT INTO todos(user_id,task) VALUES(?,?)`)
+        const insertTodo=db.prepare(`INSERT INTO todo(user_id,task) VALUES(?,?)`)
         insertTodo.run(result.lastInsertRowid,defaultTodo)
         //create a token
-        const token =JsonWebTokenError.sign({id:result.lastInsertRowid},process.env.JWT_SECRET,{expiresIn:'24h'})
+        const token =jwt.sign({id:result.lastInsertRowid},process.env.JWT_SECRET,{expiresIn:'24h'})
         res.json({token})
 
 
     } catch(err){
         console.log(err.message)
-        res.sendStatus(503)
+        res.status(503).json({ error: err.message })
     }
 
   
@@ -36,7 +36,7 @@ router.post('/register',(req,res)=>{
 router.post('/login',(req,res)=>{
     const{username,password}=req.body
     try{
-        const getUser=db.prepare('SELECT * FROM users WHERE username=?')
+        const getUser=db.prepare('SELECT * FROM user WHERE username=?')
         const user=getUser.get(username)
         if(!user){
             return res.status(404).send({message:"user not found"})
@@ -48,7 +48,7 @@ router.post('/login',(req,res)=>{
     }
     catch(err){
         console.log(err.message)
-        res.sendStatus(503)
+        res.status(503).json({ error: err.message })
     }
 
     
