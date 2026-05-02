@@ -1,24 +1,21 @@
 GET http://localhost:5005
 
-
+###
 
 POST http://localhost:5005/auth/register
-
 Content-Type: application/json
 
 {
-    "username": "",
-    "password": ""
-    }
+    "username": "myuser",
+    "password": "mypassword"
+}
 
-    ###
+###
 
 POST http://localhost:5005/auth/login
 Content-Type: application/json
 
 {
-    "username": "",
-    "password": ""
-    }
-
-    ###
+    "username": "myuser",
+    "password": "mypassword"
+}
